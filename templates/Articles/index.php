@@ -4,8 +4,8 @@
 <p><?= $this->Html->link('記事の追加', ['action' => 'add']) ?></p>
 <table>
     <tr>
-        <th>タイトル</th>
-        <th>作成日時</th>
+        <th><?= $this->Paginator->sort('title', 'タイトル(クリックで並び替え)') ?></th>
+        <th><?= $this->Paginator->sort('created', '作成日時(クリックで並び替え)') ?></th>
         <th>操作</th>
     </tr>
 
@@ -29,3 +29,12 @@
     </tr>
 <?php endforeach; ?>
 </table>
+<div class="paginator">
+    <ul class="paginate">
+        <?= $this->Paginator->first('Top <<') ?>
+        <?= $this->Paginator->prev('<') ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next('>') ?>
+        <?= $this->Paginator->last('>> Last') ?>
+    </ul>
+</div>

@@ -3,8 +3,17 @@
 
 namespace App\Controller;
 
+use Cake\Controller\Component\PaginatorComponent;
+use Cake\View\Helper\PaginatorHelper;
+
 class ArticlesController extends AppController
 {
+
+    // ページネーション用
+    public $paginate = [
+        'limit' => 5,
+    ];
+
     // 記事の追加の項で特に説明なく追加されていた
     public function initialize(): void
     {
@@ -17,8 +26,9 @@ class ArticlesController extends AppController
     public function index()
     {
         $this->loadComponent('Paginator');
-        $articles = $this->Paginator->paginate($this->Articles->find());
-        $this->set(compact('articles'));
+        $this->set('articles', $this->paginate($this->Articles)); // ページネーション用
+        // $articles = $this->Paginator->paginate($this->Articles->find());
+        // $this->set(compact('articles'));
     }
 
     public function view($slug = null)
